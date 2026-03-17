@@ -1,25 +1,42 @@
 {
-  "name": "hugo-start",
+  "name": "loveit-src",
   "version": "1.0.0",
-  "description": "Hugo starter template with Ananke theme",
-  "scripts": {
-    "build": "./node_modules/.bin/hugo --minify",
-    "postinstall": "git submodule update --init",
-    "dev": "hugo server -D",
-    "clean": "rm -rf public",
-    "preview": "hugo server"
+  "description": "LoveIt theme source file",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.1",
+    "core-js": "^3.40.0",
+    "segmentit": "^2.0.3"
   },
-  "dependencies": {
-    "hugo-extended": "^0.147.8"
+  "scripts": {
+    "preinstall": "npx npm-force-resolutions",
+    "compile": "npx babel src/js --out-file assets/js/theme.js",
+    "compile-lunr-segmentit": "browserify src/lib/lunr/lunr.segmentit.js -o assets/lib/lunr/lunr.segmentit.js -t babelify --presets @babel/preset-env",
+    "hugo": "hugo --source exampleSite --buildDrafts --gc",
+    "hugo-development": "hugo --source exampleSite --buildDrafts --gc --minify --environment development",
+    "hugo-production": "hugo --source exampleSite --gc --minify --environment production",
+    "hugo-server": "hugo server --source exampleSite --buildDrafts --disableFastRender",
+    "hugo-server-development": "hugo server --source exampleSite --buildDrafts --disableFastRender --environment development",
+    "hugo-server-production": "hugo server --source exampleSite --minify --disableFastRender --environment production",
+    "htmlproofer": "htmlproofer exampleSite/public --disable-external true --ignore-missing-alt true",
+    "copy-resources": "cp -rf exampleSite/resources ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dillonzq/LoveIt.git"
   },
   "keywords": [
     "hugo",
-    "blog",
-    "static-site"
+    "theme"
   ],
-  "author": "",
+  "author": "Dillon",
   "license": "MIT",
-  "devDependencies": {
-    "cross-env": "^7.0.3"
-  }
+  "bugs": {
+    "url": "https://github.com/dillonzq/LoveIt/issues"
+  },
+  "homepage": "https://github.com/dillonzq/LoveIt#readme"
 }
