@@ -24,6 +24,7 @@
     "hugo-server-production": "hugo server --source exampleSite --minify --disableFastRender --environment production",
     "htmlproofer": "htmlproofer exampleSite/public --disable-external true --ignore-missing-alt true",
     "copy-resources": "cp -rf exampleSite/resources ."
+    "build": "npm run hugo-production"
   },
   "repository": {
     "type": "git",
